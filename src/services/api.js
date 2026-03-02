@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: '', // Using Vite proxy
+    baseURL: 'https://umarani18-url-malicious-api.hf.space',
 });
 
 // Add a request interceptor
