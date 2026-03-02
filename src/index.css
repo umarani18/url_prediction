@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --bg-dark: #0a0b10;
+    --bg-light: #f1f5f9;
+    --cyan: #00f2fe;
+    --blue: #4facfe;
+    --primary-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --danger-gradient: linear-gradient(135deg, #ff4b2b 0%, #ff416c 100%);
+    --success-gradient: linear-gradient(135deg, #45EBA5 0%, #21D4FD 100%);
+    --nav-height: 80px;
+}
+
+.dark {
+    --app-bg: var(--bg-dark);
+    --app-text: #e2e8f0;
+    --app-text-muted: #94a3b8;
+    --app-border: rgba(255, 255, 255, 0.1);
+    --app-card: rgba(255, 255, 255, 0.03);
+}
+
+.light {
+    --app-bg: var(--bg-light);
+    --app-text: #0f172a;
+    --app-text-muted: #475569;
+    --app-border: rgba(0, 0, 0, 0.08);
+    --app-card: #ffffff;
+}
+
+@layer base {
+    body {
+        background-color: var(--app-bg);
+        color: var(--app-text);
+        @apply min-h-screen overflow-x-hidden font-inter selection:bg-cyan/30 transition-colors duration-300;
+    }
+}
+
+@layer utilities {
+    .text-theme {
+        color: var(--app-text);
+    }
+
+    .text-theme-muted {
+        color: var(--app-text-muted);
+    }
+}
+
+@layer components {
+    .glass {
+        background-color: var(--app-card);
+        border: 1px solid var(--app-border);
+        @apply backdrop-blur-xl;
+    }
+
+    .glass-card {
+        background-color: var(--app-card);
+        border: 1px solid var(--app-border);
+        @apply backdrop-blur-2xl rounded-3xl p-8 transition-colors duration-300;
+    }
+
+    .gradient-text {
+        @apply bg-primary-gradient bg-clip-text text-transparent font-bold;
+    }
+
+    .btn {
+        @apply px-7 py-3 rounded-xl font-semibold flex items-center gap-2 transition-all active:scale-95 text-sm;
+    }
+
+    .btn-primary {
+        @apply bg-primary-gradient text-white shadow-lg shadow-blue/20 hover:shadow-cyan/30 hover:-translate-y-0.5;
+    }
+
+    .btn-outline {
+        border: 1px solid var(--app-border);
+        background-color: transparent;
+        color: var(--app-text);
+        @apply hover:bg-white/5 hover:border-cyan/40;
+    }
+
+    .input-field {
+        width: 100%;
+        background-color: var(--app-card);
+        border: 1px solid var(--app-border);
+        color: var(--app-text);
+        @apply rounded-xl px-4 py-3 focus:outline-none focus:border-cyan/50 transition-all;
+    }
+}
+
+/* Background Animated Elements */
+.bg-blur {
+    @apply fixed rounded-full blur-[120px] -z-10 opacity-15 pointer-events-none;
+}
+
+.blur-1 {
+    @apply w-[600px] h-[600px] -top-48 -right-24 bg-blue;
+}
+
+.blur-2 {
+    @apply w-[500px] h-[500px] -bottom-48 -left-24 bg-cyan;
+}
+
+.bg-grid {
+    @apply fixed inset-0 -z-20 opacity-20 pointer-events-none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
